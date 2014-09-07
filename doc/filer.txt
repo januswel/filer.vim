@@ -1,0 +1,86 @@
+*filer.txt*	Plugin to launch filer
+                                                Last change: 2014 Sep 07.
+
+SYNOPSIS						*filer-synopsis*
+>
+	" from Ex command
+	:LaunchFiler ~/.vim/plugin
+	:LaunchFiler ~\_vimrc
+
+    " hit <Leader>f to open filer with pointing at the file in the current
+    buffer
+
+DESCRIPTION						*winexpl-description*
+
+Plugin to open a directory or a file by OS-specific filer.
+
+In |mac| environment, command "open" is used.
+Not implemented in other environments.
+
+
+DEPENDENCIES						*filer-dependencies*
+
+{only available when your VIM is |mac| version and has the |+multi_byte| and
+|+modify_fname| feature}
+
+This plugin require following autoload file.
+
+autoload/jwlib/shell.vim
+http://github.com/januswel/jwlib/autoload/shell.vim
+
+PROVIDES						*filer-provides*
+
+Mappings:
+<Leader>f or <Plug>LaunchFiler
+    Launches a filer at a directory that includes current buffer's file with
+    pointing the file, when you open a file in the current buffer.
+
+    Launches a filer at a directory when you open a directory in the current
+    buffer.
+
+
+Commands:
+:LaunchFiler
+    Same as <Leader>f or <Plug>LaunchFiler. See above.
+
+:LaunchFiler {dir}
+	Open {dir} by OS-specific filer.
+
+:LaunchFiler {file}
+	Open a directory that includes {file} with pointing {file}.
+
+SETTINGS						*filer-settings*
+
+This plugin doesn't have any settings.
+
+DISABLES						*filer-disables*
+
+Variables:
+g:loaded_filer
+    Does nothing when the variable named this is defined. Define
+    g:loaded_filer in .vimrc to disable this plugin.
+
+g:no_filer_maps
+    When this variable is non-zero, doesn't register any effective mappings.
+
+g:no_plugin_maps
+    When this variable is non-zero, doesn't register any effective mappings.
+
+    Use of this variable may have an affect on mappings of other plugins. To
+    disable only mappings of this plugin, you should use "g:no_filer_maps".
+    See above.
+
+
+==============================================================================
+
+Author
+	janus_wel <janus.wel.3@gmail.com>
+Copyright
+	(c) 2014 by janus_wel
+License
+	This material may be distributed only subject to the terms and
+	conditions set forth in the Open Publication License, v1.0 or later
+	(the latest version is presently available at
+	http://www.opencontent.org/openpub/).
+
+vim:tw=78:ts=8:noet:ft=help:norl:
