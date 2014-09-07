@@ -1,6 +1,11 @@
 " vim plugin file
 " Filename:     filer.vim
 " Maintainer:   janus_wel <janus.wel.3@gmail.com>
+" Dependency:
+"   This plugin requires following file.
+"
+"   http://github.com/januswel/jwlib.git
+"       jwlib/autoload/shell.vim
 "
 " License:      MIT License {{{1
 "   See under URL.  Note that redistribution is permitted with LICENSE.
