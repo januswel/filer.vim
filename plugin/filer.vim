@@ -4,7 +4,7 @@
 "
 " License:      MIT License {{{1
 "   See under URL.  Note that redistribution is permitted with LICENSE.
-"   http://github.com/januswel/filer.vim/LICENSE
+"   https://github.com/januswel/filer.vim/blob/master/LICENSE
 
 " preparations {{{1
 " check if this plugin is already loaded or not
