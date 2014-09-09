@@ -5,7 +5,7 @@
 "   This plugin requires following file.
 "
 "   http://github.com/januswel/jwlib.git
-"       jwlib/autoload/shell.vim
+"       autoload/jwlib/shell.vim
 "
 " License:      MIT License {{{1
 "   See under URL.  Note that redistribution is permitted with LICENSE.

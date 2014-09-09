@@ -1,5 +1,5 @@
 *filer.txt*	Plugin to launch filer
-                                                Last change: 2014 Sep 07.
+                                                Last change: 2014 Sep 10.
 
 SYNOPSIS						*filer-synopsis*
 >
@@ -25,8 +25,9 @@ DEPENDENCIES						*filer-dependencies*
 
 This plugin require following autoload file.
 
-autoload/jwlib/shell.vim
-http://github.com/januswel/jwlib/autoload/shell.vim
+https://github.com/januswel/jwlib.vim/blob/master/autoload/jwlib/shell.vim
+
+See https://github.com/januswel/jwlib.vim
 
 PROVIDES						*filer-provides*
 
