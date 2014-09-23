@@ -24,7 +24,13 @@ if !(has('multi_byte') && has('modify_fname'))
 endif
 
 " check the system has the required command
-if !(has('mac') && executable('open'))
+if (has('mac') && executable('open'))
+    let s:os = 'mac'
+endif
+if (has('win32') && executable('explorer.exe'))
+    let s:os = 'win'
+endif
+if !exists('s:os')
     finish
 endif
 
@@ -57,13 +63,26 @@ endif
 nnoremap <silent><Plug>LaunchFiler :call <SID>LaunchFiler()<CR>
 
 " constants {{{2
-let s:cmd = '!open'
+let s:cmd = {
+            \   'mac': 'open',
+            \   'win': 'start explorer.exe',
+            \ }
 lockvar s:cmd
-let s:opt = '-R '
+let s:opt = {
+            \   'mac': '-R ',
+            \   'win': '/select,',
+            \ }
 lockvar s:opt
 
 " functions {{{2
 function! s:LaunchFiler(...)
+    let save_shellslash = &shellslash
+    if jwlib#shell#GetType() ==# 'cmd'
+        set noshellslash
+    else
+        set shellslash
+    endif
+
     try
         if empty(a:000)
             " lanch filer and select editing file
@@ -82,15 +101,17 @@ function! s:LaunchFiler(...)
         endif
 
         if exists('dir')
-            let cmd = s:cmd . ' ' . shellescape(path)
+            let cmd = '! ' . s:cmd[s:os] . ' ' . shellescape(path)
         else
-            let cmd = s:cmd . ' ' . s:opt . shellescape(path)
+            let cmd = '! ' . s:cmd[s:os] . ' ' . s:opt[s:os] . shellescape(path)
         endif
 
         let cmd = iconv(cmd, &encoding, jwlib#shell#GetEncoding())
         silent execute cmd
     catch
         echoerr v:exception
+    finally
+        let &shellslash = save_shellslash
     endtry
 endfunction
 
