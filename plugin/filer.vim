@@ -64,8 +64,8 @@ nnoremap <silent><Plug>LaunchFiler :call <SID>LaunchFiler()<CR>
 
 " constants {{{2
 let s:cmd = {
-            \   'mac': 'open',
-            \   'win': 'start explorer.exe',
+            \   'mac': '',
+            \   'win': 'explorer.exe',
             \ }
 lockvar s:cmd
 let s:opt = {
@@ -75,44 +75,31 @@ let s:opt = {
 lockvar s:opt
 
 " functions {{{2
-function! s:LaunchFiler(...)
-    let save_shellslash = &shellslash
-    if jwlib#shell#GetType() ==# 'cmd'
-        set noshellslash
+function! s:LaunchFiler(...) " {{{3
+    if empty(a:000)
+        " lanch filer and select editing file
+        let path = expand('%:p')
+        if empty(path)
+            " when buffer name is empty
+            let path = getcwd()
+        endif
     else
-        set shellslash
+        let path = fnamemodify(a:1, ':p')
     endif
 
-    try
-        if empty(a:000)
-            " lanch filer and select editing file
-            let path = expand('%:p')
-            if empty(path)
-                " when buffer name is empty
-                let path = getcwd()
-            endif
-        else
-            let path = fnamemodify(a:1, ':p')
-        endif
+    if isdirectory(path)
+        " when path is directory
+        let dir = 1
+    endif
 
-        if isdirectory(path)
-            " when path is directory
-            let dir = 1
-        endif
+    let path = jwlib#shell#ShellFriendly(path)
+    if exists('dir')
+        let cmd = s:cmd[s:os] . ' ' . path
+    else
+        let cmd = s:cmd[s:os] . ' ' . s:opt[s:os] . path
+    endif
 
-        if exists('dir')
-            let cmd = '! ' . s:cmd[s:os] . ' ' . shellescape(path)
-        else
-            let cmd = '! ' . s:cmd[s:os] . ' ' . s:opt[s:os] . shellescape(path)
-        endif
-
-        let cmd = iconv(cmd, &encoding, jwlib#shell#GetEncoding())
-        silent execute cmd
-    catch
-        echoerr v:exception
-    finally
-        let &shellslash = save_shellslash
-    endtry
+    call jwlib#os#Launch(cmd)
 endfunction
 
 " post-processings {{{1
