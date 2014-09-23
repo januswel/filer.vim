@@ -1,5 +1,5 @@
 *filer.txt*	Plugin to launch filer
-                                                Last change: 2014 Sep 10.
+                                                Last change: 2014 Sep 23.
 
 SYNOPSIS						*filer-synopsis*
 >
@@ -7,8 +7,8 @@ SYNOPSIS						*filer-synopsis*
 	:LaunchFiler ~/.vim/plugin
 	:LaunchFiler ~\_vimrc
 
-    " hit <Leader>f to open filer with pointing at the file in the current
-    buffer
+	" hit <Leader>f to open filer with pointing at the file in the current
+	buffer
 
 DESCRIPTION						*winexpl-description*
 
@@ -20,8 +20,8 @@ Not implemented in other environments.
 
 DEPENDENCIES						*filer-dependencies*
 
-{only available when your VIM is |mac| version and has the |+multi_byte| and
-|+modify_fname| feature}
+{only available when your VIM is |mac| or |win32| version and has the
+|+multi_byte| and |+modify_fname| features}
 
 This plugin require following autoload file.
 
