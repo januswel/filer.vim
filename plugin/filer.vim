@@ -6,6 +6,7 @@
 "
 "   http://github.com/januswel/jwlib.git
 "       autoload/jwlib/shell.vim
+"       autoload/jwlib/os.vim
 
 " License:      MIT License {{{1
 "   See under URL.  Note that redistribution is permitted with LICENSE.
